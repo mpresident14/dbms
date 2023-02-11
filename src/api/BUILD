@@ -6,8 +6,4 @@ cc_library(
     name = "api",
     srcs = glob(["*.cpp"]),
     hdrs = glob(["*.hpp"]),
-    deps = [
-        "@com_google_absl//absl/status",
-        "@com_google_absl//absl/status:statusor",
-    ],
 )

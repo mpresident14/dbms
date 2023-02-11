@@ -26,17 +26,12 @@ int main() {
   int n = 5678;
   bool b = true;
   std::string str = std::string("Hello world").append(1024, '\0');
-  auto status = prez::dbms::api::write_row(
+  prez::dbms::api::write_row(
       "src/main/testfiles/table.data",
       {&n, &b, str.c_str()},
       {prez::dbms::api::ColumnType::INT,
        prez::dbms::api::ColumnType::BOOL,
        prez::dbms::api::ColumnType::STRING});
-  if (!status.ok()) {
-    std::cout << status << std::endl;
-    return 1;
-  }
-
 
   auto row = prez::dbms::api::read_row(
       "src/main/testfiles/table.data",
@@ -45,14 +40,10 @@ int main() {
        prez::dbms::api::ColumnType::BOOL,
        prez::dbms::api::ColumnType::STRING});
 
-  if (!row.ok()) {
-    std::cout << status << std::endl;
-    return 1;
-  }
 
-  std::cout << std::any_cast<int>((*row)[0]) << std::endl;
-  std::cout << std::boolalpha << std::any_cast<bool>((*row)[1]) << std::endl;
-  std::cout << std::any_cast<std::string>((*row)[2]) << std::endl;
+  std::cout << std::any_cast<int>(row[0]) << std::endl;
+  std::cout << std::boolalpha << std::any_cast<bool>(row[1]) << std::endl;
+  std::cout << std::any_cast<std::string>(row[2]) << std::endl;
 
 
   return 0;
