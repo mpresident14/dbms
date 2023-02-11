@@ -4,5 +4,8 @@ cc_binary(
     name = "main",
     srcs = ["main.cpp"],
     data = glob(["testfiles/*"]),
-    deps = ["//src/disk:disk_manager"],
+    deps = [
+        "//src/api",
+        "//src/disk:disk_manager",
+    ],
 )
